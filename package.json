@@ -1,0 +1,33 @@
+{
+  "name": "minecraft-clone",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:client": "vite",
+    "dev:server": "tsx server/index.ts",
+    "dev:all": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "build": "npm run typecheck && npm run typecheck:server && npm run build:client && npm run build:server",
+    "build:client": "vite build",
+    "build:server": "esbuild server/index.ts --bundle --platform=node --format=cjs --outfile=dist-server/server/index.cjs",
+    "preview": "vite preview",
+    "start:server": "node dist-server/server/index.cjs",
+    "typecheck": "tsc --noEmit",
+    "typecheck:server": "tsc -p tsconfig.server.json"
+  },
+  "dependencies": {
+    "three": "^0.173.0",
+    "ws": "^8.18.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "@types/three": "^0.173.0",
+    "@types/ws": "^8.5.14",
+    "concurrently": "^9.1.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0"
+  }
+}
